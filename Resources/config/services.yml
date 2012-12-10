@@ -1,0 +1,4 @@
+services:
+    snowcap_mailjet.client:
+        class: Snowcap\MailjetBundle\Client
+        arguments: [%snowcap_mailjet.api_key%, %snowcap_mailjet.secret_key%, %snowcap_mailjet.debug%]
