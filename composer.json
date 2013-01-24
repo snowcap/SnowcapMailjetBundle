@@ -1,8 +1,8 @@
 {
     "name": "snowcap/mailjet-bundle",
     "type": "symfony-bundle",
-    "description": "Symfony SnowcapMailjetBundle",
-    "keywords": ["Utility"],
+    "description": "Mailjet wrapper for Symfony2",
+    "keywords": ["Utility", "Mailjet", "Symfony"],
     "homepage": "https://github.com/snowcap/SnowcapMailjetBundle",
     "license": "MIT",
     "authors": [
