@@ -52,3 +52,38 @@ public function registerBundles()
     );
 }
 ```
+
+### Configure Mailjet
+
+In your config.yml:
+
+``` yml
+snowcap_mailjet:
+    api_key: %mailjet_api_key%
+    secret_key: %mailjet_secret_key%
+```
+
+An optional parameter "debug" is available (0 by default). See Mailjet's doc for more information.
+
+### Usage
+
+The API is available with the "snowcap_mailjet" service.
+In your controller (or elsewhere):
+
+``` php
+public function newsletterAction()
+{
+    // Get Mailjet client
+    $client = $this->get('snowcap_mailjet');
+    
+    // Add an email to a mailing list
+    $client->listsAddcontact(
+        array(
+            'contact' => 'someone@email.com',
+            'id'      => 'your-list-id',
+            'force'   => true,
+            'method'  => 'POST'
+        )
+    );
+}
+```
