@@ -29,6 +29,7 @@ class Configuration implements ConfigurationInterface
                         ->thenInvalid('Debug must be 0, 1 or 2')
                     ->end()
                 ->end()
+				->scalarNode('get_response_code')->end()
             ->end();
 
         // Here you should define the parameters that are allowed to

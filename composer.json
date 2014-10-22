@@ -1,9 +1,9 @@
 {
-    "name": "snowcap/mailjet-bundle",
+    "name": "trufa/mailjet-bundle",
     "type": "symfony-bundle",
     "description": "Mailjet wrapper for Symfony2",
     "keywords": ["Utility", "Mailjet", "Symfony"],
-    "homepage": "https://github.com/snowcap/SnowcapMailjetBundle",
+    "homepage": "https://github.com/trufa/SnowcapMailjetBundle",
     "license": "MIT",
     "authors": [
         {
@@ -17,6 +17,10 @@
         {
             "name": "Jérôme Poskin",
             "email": "jerome@snowcap.be"
+        },
+        {
+            "name": "Juan Varela",
+            "email": "trufavarela@gmail.com"
         },
         {
             "name": "Snowcap",
