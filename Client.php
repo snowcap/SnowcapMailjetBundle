@@ -57,11 +57,16 @@ class Client
      */
     private $secretKey;
 
+	/**
+	 * @var bool
+	 */
+	private $get_response_code;
+
     /**
      * @param bool $apiKey
      * @param bool $secretKey
      */
-    public function __construct($apiKey = false, $secretKey = false, $debug = self::DEBUG_NONE)
+    public function __construct($apiKey = false, $secretKey = false, $debug = self::DEBUG_NONE, $get_response_code = false)
     {
         if ($apiKey) {
             $this->apiKey = $apiKey;
@@ -69,6 +74,9 @@ class Client
         if ($secretKey) {
             $this->secretKey = $secretKey;
         }
+		if ($get_response_code) {
+			$this->get_response_code = $get_response_code;
+		}
         $this->apiUrl = (($this->secure) ? 'https' : 'http') . '://api.mailjet.com/' . $this->version . '';
         $this->debug = $debug;
     }
@@ -96,11 +104,20 @@ class Client
         $result = $this->sendRequest($method, $params, $request);
 
         # Return result
-        $return = ($result === true) ? $this->_response : false;
+		if (!$this->get_response_code) {
+			$return = ($result === true) ? $this->_response : false;
+		}else{
+			$return = $result;
+		}
 
-        if ($this->debug == 2 || ($this->debug == 1 && $return == false)) {
+        if ($this->debug == 2) {
             $this->debug();
-        }
+        }elseif ($this->get_response_code && $this->debug == 1 && $return != 200) {
+			$this->debug();
+		}elseif ($this->debug == 1 && $return == false) {
+			$this->debug();
+		}
+
 
         return $return;
     }
@@ -179,6 +196,9 @@ class Client
         # RESPONSE
         $this->_response = ($this->output == 'json') ? json_decode($buffer) : $buffer;
 
+		if ($this->get_response_code) {
+			return $this->_response_code;
+		}
         return ($this->_response_code == 200) ? true : false;
 
     }

@@ -25,7 +25,7 @@ class SnowcapMailjetExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
-        foreach(array('api_key', 'secret_key', 'debug') as $option) {
+        foreach(array('api_key', 'secret_key', 'debug', 'get_response_code') as $option) {
             $container->setParameter('snowcap_mailjet.' . $option, $config[$option]);
         }
 
